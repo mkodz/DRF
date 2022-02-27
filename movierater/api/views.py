@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http.response import HttpResponseNotAllowed
 
-from movierater.api.serializers import UserSerializer, FilmSerializer, FilmListTitleSerializer
+from movierater.api.serializers import UserSerializer, FilmSerializer
 from movierater.api.models import Film
 
 
@@ -28,7 +28,7 @@ class FilmViewSet(viewsets.ModelViewSet):
     # dziala automatycznie na ogolny url api np api/films - zwraca liste slownikow
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = FilmListTitleSerializer(queryset, many=True)
+        serializer = FilmSerializer(queryset, many=True)
         return Response(serializer.data)
 
     # dziala automatycznie na konkretny endpoint(obiekt) np api/films/1
